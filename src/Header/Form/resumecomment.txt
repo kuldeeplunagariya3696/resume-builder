@@ -1,0 +1,148 @@
+// import React, { useContext, useRef } from "react";
+// import { FormData1 } from "./Demo";
+// import html2canvas from "html2canvas";
+// import jsPDF from "jspdf";
+// import styles from "./Finalresume.module.css";
+// function Finalresume() {
+//   const value = useContext(FormData1);
+//   console.log(value);
+//   const pdfRef = useRef();
+//   const downloadPDF = () => {
+//     const input = pdfRef.current;
+//     // html2canvas(input).then((canvas) => {
+//     //   const imgData = canvas.toDataURL("image/png");
+//     //   const pdf = new jsPDF("p", "mm", "a4", true);
+//     //   const pdfwidth = pdf.internal.pageSize.getWidth();
+//     //   const pdfHeight = pdf.internal.pageSize.getHeight();
+//     //   const imgWidth = canvas.width;
+//     //   const imgHeight = canvas.height;
+//     //   const ratio = Math.min(pdfwidth / imgWidth, pdfHeight / imgHeight);
+//     //   const imgX = (pdfwidth - imgWidth * ratio) / 2;
+//     //   const imgY = 30;
+//     //   pdf.addImage(
+//     //     imgData,
+//     //     "PNG",
+//     //     imgX,
+//     //     imgY,
+//     //     imgWidth * ratio,
+//     //     imgHeight * ratio
+//     //   );
+//     //   pdf.save("resume.pdf");
+//     // });
+//     html2canvas(input).then((canvas) => {
+//     const imgData = canvas.toDataURL("image/png");
+//     const pdf = new jsPDF("p", "mm", "a4", true);
+//     const pdfwidth = pdf.internal.pageSize.getWidth();
+//     const pdfHeight = pdf.internal.pageSize.getHeight();
+//     const imgWidth = canvas.width;
+//     const imgHeight = canvas.height;
+
+//     // Calculate scale ratio
+//     const ratio = Math.min(pdfwidth / imgWidth, pdfHeight / imgHeight);
+    
+//     // Calculate the new image height based on the scaling ratio
+//     const newImgHeight = imgHeight * ratio;
+    
+//     // Ensure the content fits vertically by adjusting the vertical position (imgY)
+//     const imgY = 20;  // Further reduce the top margin if needed
+    
+//     // Adjust scaling if the image is too large (to prevent cut off)
+//     const fitHeight = Math.min(pdfHeight - imgY, newImgHeight);
+    
+//     pdf.addImage(
+//       imgData,
+//       "PNG",
+//       (pdfwidth - imgWidth * ratio) / 2,
+//       imgY,
+//       imgWidth * ratio,
+//       fitHeight  // Ensuring the image does not go beyond the bottom of the page
+//     );
+//     pdf.save("resume.pdf");
+//   });
+//   };
+//   return (
+//     <>
+//       {" "}
+//       <div ref={pdfRef} className={styles.container}>
+//         <h1 className={styles.name}>
+//           {value.fname} {value.lname}
+//         </h1>
+//         <div className={styles.personal}>
+//           <h4>Personal Details</h4>
+//         </div>
+//         <ul>
+//           <li>Profession : {value.profession}</li>
+//           <li>
+//             Location:{value.city} {value.country}
+//           </li>
+//           <li>Mobile no: {value.phone}</li>
+//           <li>email:{value.email}</li>
+//         </ul>
+//         <div className={styles.Education}>
+//           <h4>Education Details</h4>
+//         </div>
+//         <ul>
+//           <li>
+//             University : {value.college} {value.year}
+//           </li>
+//           <li>
+//             School : {value.school} {value.yearc}
+//           </li>
+//         </ul>
+//         <div className={styles.Skills}>
+//           <h4>Skills</h4>
+//         </div>
+//         <ul>
+//           <li>Skill : {value.Skill}</li>
+//           <li>{value.Skill1}</li>
+//           <li>{value.Skill2}</li>
+//         </ul>
+//         <div className={styles.work}>
+//           <h4>Work Experience</h4>
+//         </div>
+
+//         <ul>
+//           <li>Title : {value.title}</li>
+//           <li>Company Name : {value.cname}</li>
+//           <li>
+//             Certificate Link : <a href="{value.cert_link}">{value.cert_link}</a>
+//           </li>
+//           <li>Company Location : {value.Location}</li>
+//           <li>
+//             {value.sdate} {value.edate}
+//           </li>
+//           <li>
+//             Work Description : {value.des} {value.des1} {value.des2}
+//           </li>
+//         </ul>
+//         <div className={styles.projects}>
+//           <h4>Projects</h4>
+//         </div>
+//         <h5>Project Title : {value.project_title}</h5>
+//         <ul>
+//           <li>Overview : {value.overview}</li>
+//           <li>
+//             Github link : <a href="{value.github}">{value.github}</a>
+//           </li>
+//           <li>
+//             Project Description : {value.des_p} {value.des_p1} {value.des_p2}
+//           </li>
+//         </ul>
+//         <div className={styles.achievements}>
+//           <h4>Achievements</h4>
+//         </div>
+//         <ul>
+//           <li>
+//             Achievement :<li>{value.achivement}</li>
+//             <li> {value.achivement1}</li>
+//           </li>
+//         </ul>
+//       </div>
+//       <div className="row text-center mt-5">
+//         <button className={styles.button} onClick={downloadPDF}>
+//           Download Pdf
+//         </button>
+//       </div>
+//     </>
+//   );
+// }
